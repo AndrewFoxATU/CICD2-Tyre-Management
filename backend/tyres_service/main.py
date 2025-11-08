@@ -1,6 +1,6 @@
 # backend/tyres_service/main.py
 from fastapi import FastAPI, HTTPException, status
-from .schemas import Tyre
+from schemas import Tyre
 
 app = FastAPI(title="Tyres Service API")
 
