@@ -2,15 +2,16 @@
 import csv
 from decimal import Decimal
 from sqlalchemy.orm import Session
-from database import SessionLocal, engine, Base
-from models import TyreModel
+
+from database import SessionLocal, engine
+from models import Base, TyreModel
 
 Base.metadata.create_all(bind=engine)
+
 
 CSV_FILE = "tyredatabase.csv"
 
 def to_bool(value: str) -> bool:
-    """Convert CSV TRUE/FALSE to Python bool safely"""
     return str(value).strip().lower() in ("true", "1", "yes")
 
 def load_csv():
@@ -20,22 +21,23 @@ def load_csv():
             reader = csv.DictReader(f)
             count = 0
             for row in reader:
-                # normalize column names
+                cost = Decimal(str(row["cost"]))
+                retail_cost = (cost * Decimal("1.35")).quantize(Decimal("0.01"))
                 tyre = TyreModel(
-                    size=row["size"].strip(),
-                    load_rate=int(row["load_rate"]),
-                    speed_rate=row["speed_rate"].strip(),
                     brand=row["Brand"].strip(),
                     model=row["Model"].strip(),
-                    season=row["Season"].strip().capitalize(),
+                    size=row["size"].strip(),
+                    load_rate=int(row["load_rate"]),
+                    speed_rate=row["speed_rate"].strip().upper(),
+                    season=row["Season"].strip().title(),
                     supplier=row["Supplier"].strip(),
                     fuel_efficiency=row["Fuel_Efficiency"].strip().upper(),
                     noise_level=int(row["noise_level"]),
                     weather_efficiency=row["weather_efficiency"].strip().upper(),
                     ev_approved=to_bool(row["ev_approved"]),
-                    cost=Decimal(str(row["cost"])),
+                    cost=cost,
                     quantity=int(row["quantity"]),
-                    retail_cost=Decimal(str(row["cost"])) * Decimal("1.35"),
+                    retail_cost=retail_cost,
                 )
                 db.add(tyre)
                 count += 1
