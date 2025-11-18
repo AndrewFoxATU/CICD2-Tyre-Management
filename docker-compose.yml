@@ -35,11 +35,18 @@ volumes:
   tyre_data:
 
 
-  #users_service:
-    #build: ./backend/users_service
-    #container_name: users_service
-    #ports:
-    #  - "8003:8000"
+#  users_service:
+#    build: ./backend/users_service
+#    container_name: users_service
+#    ports:
+#      - "8003:8000"
+#    environment:
+#      POSTGRES_USER: users_user
+#      POSTGRES_PASSWORD: users_pass
+#      POSTGRES_DB: users_db
+#      POSTGRES_HOST: postgres
+#    depends_on:
+#      - postgres
 
   #notifications_service:
     #build: ./backend/notifications_service

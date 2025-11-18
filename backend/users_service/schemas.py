@@ -1,0 +1,20 @@
+from pydantic import BaseModel
+from typing import Optional, Literal
+
+class UserBase(BaseModel):
+    name: str
+    role: Literal["admin", "employee"]
+
+class UserCreate(UserBase):
+    password: str
+
+class UserUpdate(BaseModel):
+    name: Optional[str] = None
+    role: Optional[Literal["admin", "employee"]] = None
+    password: Optional[str] = None
+
+class UserRead(UserBase):
+    id: int
+
+    class Config:
+        from_attributes = True

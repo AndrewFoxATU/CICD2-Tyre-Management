@@ -1,0 +1,33 @@
+.page {
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 32px; /* smaller outer padding */
+	background-color: #f0f0f0;
+	box-sizing: border-box;
+}
+
+.box {
+	width: 100%;
+	max-width: 95%; /* MUCH wider box */
+	background-color: #ffffff;
+	border-radius: 16px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+	padding: 20px 24px; /* reduced inner padding */
+	box-sizing: border-box;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 20px;
+}
+
+.logo {
+	width: 100%;
+	max-width: 950px; /* bigger logo */
+	height: auto;
+	display: block;
+}
