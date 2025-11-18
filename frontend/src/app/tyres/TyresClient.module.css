@@ -1,0 +1,16 @@
+.layout {
+	display: flex;
+	gap: 32px;
+	align-items: flex-start;
+}
+
+.sidebar {
+	width: 280px;
+	flex-shrink: 0;
+}
+
+.tableArea {
+	flex: 1;
+	min-width: 600px;
+}
+
