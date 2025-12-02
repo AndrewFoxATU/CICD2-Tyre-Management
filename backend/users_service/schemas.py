@@ -3,14 +3,14 @@ from typing import Optional, Literal
 
 class UserBase(BaseModel):
     name: str
-    role: Literal["admin", "employee"]
+    role: Literal["admin", "employee", "employee+"]
 
 class UserCreate(UserBase):
     password: str
 
 class UserUpdate(BaseModel):
     name: Optional[str] = None
-    role: Optional[Literal["admin", "employee"]] = None
+    role: Optional[Literal["admin", "employee", "employee+"]] = None
     password: Optional[str] = None
 
 class UserRead(UserBase):
