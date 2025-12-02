@@ -10,7 +10,7 @@ class User(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
-    role: Mapped[str] = mapped_column(String, nullable=False)  # admin or employee
+    role: Mapped[str] = mapped_column(String, nullable=False)  # admin/employee+/employee
     password_hash: Mapped[str] = mapped_column(String, nullable=False)
 
     def verify_password(self, password: str) -> bool:
